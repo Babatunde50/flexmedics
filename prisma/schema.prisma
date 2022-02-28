@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model reservations {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  email          String
+  firstName      String
+  lastName       String
+  dateOfBirth    String
+  passportNumber String
+  phoneNumber    String
+  testResult     String
+  status         Status @default(PENDING)
+  gender         String
+  finalResult    String?
+}
+
+model users {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  password  String
+}
+
+enum Status {
+    PENDING
+    POSITIVE
+    NEGATIVE
+}

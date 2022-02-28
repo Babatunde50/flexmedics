@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <style type="text/css">
+        body {
+          width: 100vw;
+          margin: 0;
+          padding: 1rem;
+          font-size: 16px;
+          line-height: 24px;
+          font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+            sans-serif;
+          color: rgb(33, 33, 33);
+        }
+
+        p {
+          padding-bottom: 4px;
+          padding-top: 4px;
+          margin-bottom: -15px;
+          margin-top: 4px;
+          font-size: 10px;
+        }
+
+        .user-box {
+          border: 3px solid green;
+          border-radius: 12px;
+          padding: 1rem;
+          padding-bottom: 2rem;
+          margin-top: 16px;
+        }
+
+        .time-box {
+          border: 3px solid blue;
+          border-radius: 12px;
+          padding: 1rem;
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-start;
+        }
+
+        .result-box {
+          border: 3px solid blue;
+          border-radius: 12px;
+          padding: 1rem;
+          margin-top: 16px;
+        }
+      </style>
+      <meta charset="utf-8" />
+    </head>
+    <body>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin-bottom: -12px;
+        "
+      >
+        <img
+          src="https://flexmedic.ca/wp-content/uploads/2021/03/cropped-flexMedic-logo-1.png.webp"
+          alt="medic"
+          height="30px"
+        />
+      </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 4px;
+        "
+      >
+        <h4 style="margin-bottom: -8px">Medical Clinic</h4>
+        <p>391, Avenue Yvon-Berger, 201</p>
+        <p>Laval, Quebec H7L 2B9</p>
+        <p>www.flexmedic.ca</p>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <p>Tel: (450) 628-7329</p>
+        <p>Fax: (450) 628-7616</p>
+        <p>E-mail: info@flexmedic.ca</p>
+      </div>
+      <div class="user-box">
+        <div>
+          <p style="text-decoration: underline">
+            First and last name:
+            <span style="font-weight: bold; text-decoration: none">
+              &nbsp; &nbsp; {{ name }}
+            </span>
+          </p>
+          <p style="text-decoration: underline">
+            ID:
+            <span style="font-weight: bold; text-decoration: none">
+              &nbsp; &nbsp; {{ passportNumber }}
+            </span>
+          </p>
+          <div style="display: flex">
+            <p style="text-decoration: underline; margin-right: 2rem">
+              Date of Birth:
+              <span style="font-weight: bold; text-decoration: none">
+                &nbsp; &nbsp; {{dob}}
+              </span>
+            </p>
+            <p style="text-decoration: underline">
+              Gender:
+              <span style="font-weight: bold; text-decoration: none">
+                &nbsp; &nbsp; {{gender}}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="time-box">
+        <p style="font-weight: bold">
+          Received: &nbsp;&nbsp;&nbsp;
+          <span style="font-weight: normal"> {{receivedDateDay}} </span>
+          &nbsp;&nbsp;&nbsp; <span style="font-weight: normal"> {{receivedDateTime}} </span>
+        </p>
+        <p style="font-weight: bold">
+          Completed: &nbsp;&nbsp;&nbsp;
+          <span style="font-weight: normal"> {{completedDateDay}} </span>
+          &nbsp;&nbsp;&nbsp; <span style="font-weight: normal"> {{completedDateTime}}  </span>
+        </p>
+      </div>
+      <p style="padding-bottom: 1rem; border-bottom: 2px solid black; margin-bottom: 16px;">
+        Comments:
+      </p>
+      <div class="result-box">
+        <p style="font-weight: bold">Virology</p>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div>
+            <p style="font-weight: bold; text-decoration: underline">ANALYTE</p>
+            <p>COVID-19 Rapid Antigen FIA</p>
+          </div>
+          <div>
+            <p style="font-weight: bold; text-decoration: underline">UNITS</p>
+            <p> - </p>
+          </div>
+          <div>
+            <p style="font-weight: bold; text-decoration: underline">
+              REFERENCE
+            </p>
+            <p>{{ result }}</p>
+          </div>
+          <div>
+            <p style="font-weight: bold; text-decoration: underline">RESULT</p>
+            <p> {{ result }} </p>
+          </div>
+          <div>
+            <p style="font-weight: bold; text-decoration: underline">COMMENT</p>
+            <p> - </p>
+          </div>
+        </div>
+        <p style="margin-top: 1rem">
+          If the result is positive, it will be transmitted to the local public
+          health authority. If the result is negative and you have had a recent
+          possible COVID-19 exposure please consult the local public authority
+          for guidance. The COVID-19 viral (Rapid Antigen) test used is Health
+          Canada approved and is Quidel assay. All specimens are analyzed with
+          nasal or nasalpharyngeal swabs unless otherwise specified.
+        </p>
+      </div>
+      <div style="display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin-top: 48px;"> 
+        <img src="https://i.ibb.co/8m2Wcjk/medic-qr.png" alt="medic-qr" />
+      <div>
+    </body>
+    <html></html>
+  </head>
+</html>
