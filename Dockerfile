@@ -1,8 +1,15 @@
 # base node image
-FROM node:16-bullseye-slim as base
+FROM node:14-slim as base
 
 # Install openssl for Prisma
 RUN apt-get update && apt-get install -y openssl
+
+# Install libatk-bridge2.0-0 for puppeteer
+RUN apt-cache search libatk-bridge
+# RUN apt-get install libatk-bridge2.0-0
+
+RUN apt-get install -y libatk-bridge2.0-0 libgtk-3.0
+RUN apt-get update && apt-get install -y libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
 
 # Install all node_modules, including dev dependencies
 FROM base as deps
@@ -16,7 +23,7 @@ WORKDIR /app
 #     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
 #     && apt-get update \
 #     && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-#       --no-install-recommends \
+#     --no-install-recommends \
 #     && rm -rf /var/lib/apt/lists/*
 
 

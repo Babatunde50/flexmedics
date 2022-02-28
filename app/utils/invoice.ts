@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 import handlebars from 'handlebars';
 import { reservations } from '@prisma/client';
 import format from 'date-fns/format';
@@ -17,9 +17,9 @@ export async function createPDF(data: reservations) {
     name: data.firstName + ' ' + data.lastName,
     dob: data.dateOfBirth,
     receivedDateDay: format(data.createdAt, 'yyyy-MM-dd'),
-    receivedDateTime: format(data.createdAt, 'HH-mm-ss'),
+    receivedDateTime: format(data.createdAt, 'hh:mm:ss'),
     completedDateDay: format(new Date(), 'yyyy-MM-dd'),
-    completedDateTime: format(new Date(), 'HH-mm-ss'),
+    completedDateTime: format(new Date(), 'hh:mm:ss'),
     passportNumber: data.passportNumber,
     gender: data.gender,
     result: data.status,
@@ -42,12 +42,9 @@ export async function createPDF(data: reservations) {
   };
 
   const browser = await puppeteer.launch({
-    headless: true,
+    // headless: true,
     args: [
-      '--disable-gpu',
-      '--disable-dev-shm-usage',
-      '--disable-setuid-sandbox',
-      '--no-sandbox',
+      '--disable-setuid-sandbox', '--no-sandbox'
     ],
   });
 

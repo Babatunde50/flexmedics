@@ -1,7 +1,7 @@
 import { ActionFunction, LoaderFunction, redirect, useActionData } from 'remix';
 import { json } from 'remix';
 
-import { createUserSession, getUserSession, login } from '~/utils/session.server';
+import { createUserSession, getUserSession, login, sendEmail } from '~/utils/session.server';
 import validator from 'validator';
 
 type ActionData = {
@@ -59,6 +59,9 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getUserSession(request);
 
   const userId = session.get('userId');
+
+
+  await sendEmail("babatundeololade50@gmail.com", "BabaOla", "lsdfsdkf.pdf")
 
   if(userId) {
     return redirect("/reservations")

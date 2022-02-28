@@ -79,7 +79,7 @@ export async function requireUserId(request: Request) {
 export async function sendEmail(email: string, firstName: string, pdfURL: string) {
   const DOMAIN = 'email.foreseewin.com';
   const mg = mailgun({
-    apiKey: '0358329798fdd968d09cedd6907805df-602cc1bf-0ff5234d',
+    apiKey: process.env.MAIL_API_KEY!,
     domain: DOMAIN,
   });
   const data = {
