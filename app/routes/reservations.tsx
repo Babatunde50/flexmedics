@@ -1,9 +1,15 @@
 import { reservations, Status } from '@prisma/client';
-import { ActionFunction, LoaderFunction, redirect, useLoaderData } from 'remix';
+import {
+  ActionFunction,
+  LoaderFunction,
+  useLoaderData,
+} from 'remix';
 import Modal from 'react-modal';
 
 import { db } from '~/utils/db.server';
-import { getUserSession, requireUserId, sendEmail } from '~/utils/session.server';
+import {
+  sendEmail,
+} from '~/utils/session.server';
 import React from 'react';
 import { createPDF } from '~/utils/invoice';
 
@@ -15,6 +21,20 @@ export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const positiveId = form.get('positive');
   const negativeId = form.get('negative');
+  const deleteId = form.get('deleteId');
+  const deleteAll = form.get('deleteAll');
+
+  if (deleteId) {
+    await db.reservations.delete({ where: { id: deleteId as string } });
+
+    return {};
+  }
+
+  if (deleteAll) {
+    await db.reservations.deleteMany();
+
+    return {};
+  }
 
   let updatedReservation;
 
@@ -37,20 +57,23 @@ export const action: ActionFunction = async ({ request }) => {
     data: { finalResult: createdPDF },
   });
 
-  await sendEmail(updatedReservation.email, updatedReservation.firstName, createdPDF)
+  await sendEmail(
+    updatedReservation.email,
+    updatedReservation.firstName,
+    createdPDF
+  );
 
   return {};
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+  // const session = await getUserSession(request);
 
-  const session = await getUserSession(request);
+  // const userId = session.get('userId');
 
-  const userId = session.get('userId');
-
-  if(!userId) {
-    return redirect("/login")
-  }
+  // if(!userId) {
+  //   return redirect("/login")
+  // }
 
   const data: LoaderData = {
     reservations: await db.reservations.findMany({
@@ -70,7 +93,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     height: '100%',
-    minWidth: "80vh",
+    minWidth: '80vh',
     overflow: 'scroll',
   },
 };
@@ -134,12 +157,17 @@ export default function Index() {
                       >
                         Phone Number
                       </th>
+
                       <th
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Status
                       </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      ></th>
                       <th scope="col" className="relative px-6 py-3">
                         <span className="sr-only">Test Result</span>
                       </th>
@@ -181,11 +209,11 @@ export default function Index() {
                             <span
                               onClick={() => {
                                 if (reservation.finalResult) {
-                                  const linkElem = document.createElement("a")
-                                  linkElem.href = reservation.finalResult
-                                  linkElem.target = "_blank"
-                                  linkElem.download = ""
-                                  linkElem.click()
+                                  const linkElem = document.createElement('a');
+                                  linkElem.href = reservation.finalResult;
+                                  linkElem.target = '_blank';
+                                  linkElem.download = '';
+                                  linkElem.click();
                                 } else {
                                   openModal();
                                   setCurrentId(reservation.id);
@@ -200,6 +228,21 @@ export default function Index() {
                                 : 'View Uploaded Result'}
                             </span>
                           </td>
+                          <td>
+                            <form method="POST" action="/reservations">
+                              <input
+                                type="hidden"
+                                name="deleteId"
+                                value={reservation.id}
+                              />
+                              <button
+                                type="submit"
+                                className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-red-500"
+                              >
+                                Delete
+                              </button>
+                            </form>
+                          </td>
                         </tr>
                       );
                     })}
@@ -209,6 +252,24 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <form
+          method="POST"
+          action="/reservations"
+          className="my-4"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+          }}
+        >
+          <input type="hidden" name="deleteAll" value="true" />
+          <button
+            type="submit"
+            className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Delete All
+          </button>
+        </form>
       </div>
 
       <div>
@@ -218,7 +279,13 @@ export default function Index() {
           style={customStyles}
           contentLabel="Test Result"
         >
-          <img src={currentImage} className="max-w-full h-auto" height="100%" width="100%" alt="..." />
+          <img
+            src={currentImage}
+            className="max-w-full h-auto"
+            height="100%"
+            width="100%"
+            alt="..."
+          />
           <div className="py-2 flex">
             <form method="POST" action="/reservations">
               <input type="hidden" name="positive" value={currentId} />
