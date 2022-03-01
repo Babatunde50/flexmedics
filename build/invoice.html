@@ -125,15 +125,23 @@
         <p style="font-weight: bold">
           Received: &nbsp;&nbsp;&nbsp;
           <span style="font-weight: normal"> {{receivedDateDay}} </span>
-          &nbsp;&nbsp;&nbsp; <span style="font-weight: normal"> {{receivedDateTime}} </span>
+          &nbsp;&nbsp;&nbsp;
+          <span style="font-weight: normal"> {{receivedDateTime}} </span>
         </p>
         <p style="font-weight: bold">
           Completed: &nbsp;&nbsp;&nbsp;
           <span style="font-weight: normal"> {{completedDateDay}} </span>
-          &nbsp;&nbsp;&nbsp; <span style="font-weight: normal"> {{completedDateTime}}  </span>
+          &nbsp;&nbsp;&nbsp;
+          <span style="font-weight: normal"> {{completedDateTime}} </span>
         </p>
       </div>
-      <p style="padding-bottom: 1rem; border-bottom: 2px solid black; margin-bottom: 16px;">
+      <p
+        style="
+          padding-bottom: 1rem;
+          border-bottom: 2px solid black;
+          margin-bottom: 16px;
+        "
+      >
         Comments:
       </p>
       <div class="result-box">
@@ -151,7 +159,7 @@
           </div>
           <div>
             <p style="font-weight: bold; text-decoration: underline">UNITS</p>
-            <p> - </p>
+            <p>-</p>
           </div>
           <div>
             <p style="font-weight: bold; text-decoration: underline">
@@ -161,11 +169,11 @@
           </div>
           <div>
             <p style="font-weight: bold; text-decoration: underline">RESULT</p>
-            <p> {{ result }} </p>
+            <p>{{ result }}</p>
           </div>
           <div>
             <p style="font-weight: bold; text-decoration: underline">COMMENT</p>
-            <p> - </p>
+            <p>-</p>
           </div>
         </div>
         <p style="margin-top: 1rem">
@@ -177,19 +185,27 @@
           nasal or nasalpharyngeal swabs unless otherwise specified.
         </p>
       </div>
-      <div style="display: block; margin-top: 32px;">
-        <div style="
-            width: 100%;
-            margin-top: 48px;"> 
-          <img src="https://i.ibb.co/XSbJRH3/Screen-Shot-2022-02-28-at-18-15-15.png" alt="medic-qr" />
-        <div>
-      </div>
-      <div style="display: block; margin-top: 32px;">
-        <div style="
-            width: 100%;
-            margin-top: 64px;"> 
-          <img src="https://i.ibb.co/vD7GYw6/Screen-Shot-2022-02-28-at-23-57-45.png" alt="medic-qr" />
-        <div>
+      <div style="margin-top: 32px; position: relative">
+        <div style="width: 100%; margin-left: -30px; margin-top: 64px">
+          <img
+            src="https://i.ibb.co/vD7GYw6/Screen-Shot-2022-02-28-at-23-57-45.png"
+            alt="medic-qr"
+          />
+        </div>
+        <button
+          style="
+            margin-top: 2rem;
+            background-color: white;
+            color: black;
+            padding: 0.5rem 1rem;
+            border: 1px solid black;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+          "
+        >
+          Final Report
+        </button>
       </div>
     </body>
     <html></html>

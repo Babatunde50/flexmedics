@@ -2,12 +2,14 @@ import { reservations, Status } from '@prisma/client';
 import {
   ActionFunction,
   LoaderFunction,
+  redirect,
   useLoaderData,
 } from 'remix';
 import Modal from 'react-modal';
 
 import { db } from '~/utils/db.server';
 import {
+  getUserSession,
   sendEmail,
 } from '~/utils/session.server';
 import React from 'react';
@@ -67,13 +69,13 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  // const session = await getUserSession(request);
+  const session = await getUserSession(request);
 
-  // const userId = session.get('userId');
+  const userId = session.get('userId');
 
-  // if(!userId) {
-  //   return redirect("/login")
-  // }
+  if(!userId) {
+    return redirect("/login")
+  }
 
   const data: LoaderData = {
     reservations: await db.reservations.findMany({
