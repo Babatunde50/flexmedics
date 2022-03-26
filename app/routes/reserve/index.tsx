@@ -124,7 +124,7 @@ export default function Index() {
     <div className="mt-16 max-w-screen-lg mx-auto">
       <img
         className="mx-auto h-12 w-auto"
-        src="https://flexmedic.ca/wp-content/uploads/2021/03/cropped-flexMedic-logo-1.png.webp"
+        src="https://www.flexmedic.ca/images/logo.1647454729.jpg"
         alt="Workflow"
       />
       <div className="md:grid md:grid-cols-3 md:gap-6">

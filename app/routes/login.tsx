@@ -76,8 +76,8 @@ export default function Index() {
         <div>
           <img
             className="mx-auto h-12 w-auto"
-            src="https://flexmedic.ca/wp-content/uploads/2021/03/cropped-flexMedic-logo-1.png.webp"
-            alt="Workflow"
+            src="https://www.flexmedic.ca/images/logo.1647454729.jpg"
+            alt="logo"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
