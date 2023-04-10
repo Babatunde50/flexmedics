@@ -1,41 +1,28 @@
-# Welcome to Remix!
+## FlexMedics
 
-- [Remix Docs](https://remix.run/docs)
+FlexMedics is a healthcare web application designed to streamline the process of connecting patients with healthcare professionals. Built using Remix, a modern and efficient web framework, FlexMedics provides a user-friendly interface and robust features to ensure seamless communication and access to healthcare services.
 
-## Fly Setup
+### Getting Started
+These instructions will guide you through the process of setting up the FlexMedics project on your local machine for development and testing purposes.
 
-1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
+###Prerequisites
+Before you begin, make sure you have the following software installed on your machine:
 
-2. Sign up and log in to Fly
+Node.js v14.x or newer
+npm v6.x or newer
+Git
+Installation
+Clone the repository:
 
-```sh
-flyctl auth signup
-```
+git clone https://github.com/yourusername/flexmedics.git
+Change into the project directory:
 
-3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
+cd flexmedics
+Install the project's dependencies:
 
-```sh
-flyctl launch
-```
+npm install
+Start the development server:
 
-## Development
-
-From your terminal:
-
-```sh
 npm run dev
-```
+The application should now be accessible at http://localhost:3000. Visit this URL in your browser to explore the FlexMedics app.
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-If you've followed the setup instructions already, all you need to do is run this:
-
-```sh
-npm run deploy
-```
-
-You can run `flyctl info` to get the url and ip address of your server.
-
-Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
