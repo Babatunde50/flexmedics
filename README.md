@@ -5,7 +5,7 @@ FlexMedics is a healthcare web application designed to streamline the process of
 ### Getting Started
 These instructions will guide you through the process of setting up the FlexMedics project on your local machine for development and testing purposes.
 
-###Prerequisites
+### Prerequisites
 Before you begin, make sure you have the following software installed on your machine:
 
 Node.js v14.x or newer
@@ -26,3 +26,5 @@ Start the development server:
 npm run dev
 The application should now be accessible at http://localhost:3000. Visit this URL in your browser to explore the FlexMedics app.
 
+### Deployment
+Refer to the Remix deployment documentation for detailed instructions on deploying the FlexMedics application to your preferred hosting provider.
